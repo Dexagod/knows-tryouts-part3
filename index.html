@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <link rel="stylesheet" href="_shared/styles/shower-ruben.css">
+  <link rel="stylesheet" href="_shared/styles/web-fundamentals.css">
+</head>
+<body class="shower list">
+  <header class="caption">
+    <h1>
+      <a class="series" href="#title">KNoWS Summer School try-out</a><br>
+      <a class="module" href="#title">Part 3 - Hands-on with notifications</a>
+    </h1>
+  </header>
+
+  <div class="title slide" id="title">
+    <h2>
+      <a class="series" href="#title">KNoWS Summer School try-out</a><br>
+      <a class="module" href="#title">Part 3 - Hands-on with notifications</a>
+    </h2>
+    <p>hosted by: <a href="https://pod.rubendedecker.be/profile/card#me">Ruben Dedecker</a></p>
+    <p class="affiliation">
+      <a href="http://www.ugent.be/"><img  class="ugent"  src="_shared/images/logos/ugent.svg"  alt="Ghent University"></a>
+      <a href="http://www.imec.be/"><img class="imec" src="_shared/images/logos/imec.svg" alt="imec"></a>
+      <a href="http://idlab.ugent.be/"><img class="idlab" src="_shared/images/logos/idlab.svg" alt="IDLab"></a>
+    </p>
+  </div>
+
+  <div class="slide" id="overview">
+    <h2>Overview</h2>
+    <p>
+      In the previous two sessions, we got an overview of how to work with Linked Data in Javascript and with Solid.
+    </p>
+    <p>
+      In this session, we will finish with an <em>hands-on exercise</em>.
+    </p>
+  </div>
+
+  <div class="slide" id="hands-on">
+    <h2>Hands-on exercise</h2>
+    <p>
+      Send me a notification (<em><a href="https://pod.rubendedecker.be/profile/card#me">https://pod.rubendedecker.be/profile/card#me</a></em>).
+    </p>
+    <p>
+      Tell me who you are.
+    </p>
+    <p>
+      Let us know what you found of the past four days!
+    </p>
+  </div>
+
+  <div class="slide" id="ldn">
+    <h2>Linked Data Notifiations</h2>
+    <p>
+      For this, you should make use of the <a href="https://www.w3.org/TR/ldn/">Linked Data Notifications specification</a>. This is the supported specification for sending notifications to Solid pods.
+    </p>
+    <p>
+      Dont just read the full spec, focus on the useful parts.
+    </p>
+  </div>
+
+
+  <div class="slide" id="discovery">
+    <h2>Discovering the inbox</h2>
+    <p>
+      The first step is for you to discover where you should send your notification to. 
+      The goal is to send it to the inbox that is advertised by my WebID!
+    </p>
+    <p>
+      My WebID can be found at <em><a href="https://pod.rubendedecker.be/profile/card#me">https://pod.rubendedecker.be/profile/card#me</a></em>.
+    </p>
+
+    <p>
+      <em>tip: look in the document itself, not in the headers</em>
+    </p>
+  </div>
+
+  <div class="slide" id="create">
+    <h2>Creating the notification</h2>
+    <p>
+      Next, create the notification using <em>Linked Data</em>.
+      <br>
+      <br>
+      Feel free to use the tools shown in the previous sessions, or do it manually! 
+      <br>
+      <br>
+      Use any data format you want, and if possible check it using the online playgrounds for <a href="http://ttl.summerofcode.be/">turtle</a> and <a href="https://json-ld.org/playground/">JSON-LD</a>!
+    </p>
+    
+  </div>
+
+  <div class="slide" id="format">
+    <h2>Notification contents</h2>
+    <p>
+      The notification should contain at least the following predicates from the <a href="https://www.w3.org/TR/activitystreams-vocabulary/">Activity Streams vocabulary</a>:
+      <br>
+      <br>
+      - a type of <b>as:Note</b>.
+      <br>
+      - an <b>as:actor</b> predicate containing your WebID that has a <b>foaf:name</b> property set.
+      <br>
+      - an <b>as:content</b> predicate telling us who you thought of the past four days!
+    </p>
+
+    <p>
+      if you do not have a WebID, you can create one <a href="https://solidcommunity.net/register">here</a>.
+    </p>
+    
+  </div>
+
+
+  <div class="slide" id="send">
+    <h2>Sending the notification</h2>
+    <p>
+      <b>Now send me the notification you have made!</b>
+    </p>
+    <p>
+      I will list all received notifications on screen using <a href="https://comunica.github.io/comunica-feature-link-traversal-web-clients/builds/solid-default/#datasources=https%3A%2F%2Fpod.rubendedecker.be%2Finbox%2F&query=PREFIX%20foaf%3A%20%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E%0APREFIX%20ldp%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2Fns%2Fldp%23%3E%0APREFIX%20as%3A%20%3Chttps%3A%2F%2Fwww.w3.org%2Fns%2Factivitystreams%23%3E%0APREFIX%20rdf%3A%20%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0ASELECT%20DISTINCT%20%3Fwebid%20%3Fname%20%3Fmessage%20WHERE%20%7B%0A%20%20%3Fnotification%20rdf%3Atype%20as%3ANote.%0A%20%20%3Fnotification%20as%3Aactor%20%3Fwebid.%0A%20%20%3Fnotification%20as%3Acontent%20%3Fmessage.%0A%20%20OPTIONAL%20%7B%3Fwebid%20foaf%3Aname%20%3Fname.%7D%0A%7D">Comunica</a>.
+    </p>
+    <p>
+      I am here for all your questions. Feel free to ask or discuss with me!
+    </p>
+    
+  </div>
+
+
+
+
+  <script src="_shared/scripts/shower.min.js"></script>
+  <script src="_shared/scripts/enhancements.js"></script>
+</body>
+</html>
